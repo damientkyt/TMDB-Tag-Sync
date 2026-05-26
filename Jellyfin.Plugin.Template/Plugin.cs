@@ -7,7 +7,7 @@ using MediaBrowser.Common.Plugins;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
 
-namespace Jellyfin.Plugin.Template;
+namespace TMDBTagSync;
 
 /// <summary>
 /// The main plugin.

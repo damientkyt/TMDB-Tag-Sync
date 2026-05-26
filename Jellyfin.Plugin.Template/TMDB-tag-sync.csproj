@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace>Jellyfin.Plugin.Template</RootNamespace>
+    <AssemblyName>TMDB-Tag-Sync</AssemblyName>
+    <RootNamespace>TMDBTagSync</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
