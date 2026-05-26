@@ -1,18 +1,33 @@
-name: '🏗️ Build Plugin'
+name: Build Plugin
 
 on:
   push:
-    branches:
-      - master
-    paths-ignore:
-      - '**/*.md'
   pull_request:
-    branches:
-      - master
-    paths-ignore:
-      - '**/*.md'
-  workflow_dispatch:
 
 jobs:
-  call:
-    uses: jellyfin/jellyfin-meta-plugins/.github/workflows/build.yaml@master
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore ./TMDB-Tag-Sync.csproj
+
+      - name: Build
+        run: dotnet build ./TMDB-Tag-Sync.csproj -c Release --no-restore
+
+      - name: Publish
+        run: dotnet publish ./TMDB-Tag-Sync.csproj -c Release -o ./publish --no-build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TMDB-Tag-Sync
+          path: ./publish
